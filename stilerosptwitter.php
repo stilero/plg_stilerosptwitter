@@ -18,14 +18,14 @@ JLoader::register('SocialpromoterImporter', JPATH_ADMINISTRATOR.DS.'components'.
 //jimport('joomla.plugin.plugin');
 jimport('joomla.event.plugin');
 
-class plgSystemStilerosptwitter extends JPlugin {
+class plgSocialpromoterStilerosptwitter extends JPlugin {
     const SP_NAME = 'Twitter Plugin';
     const SP_DESCRIPTION = 'Posts links and photos to Twitter';
     const SP_IMAGE = '';
     protected $supportedPosttypes;
     
-    function plgSystemStilerosptwitter ( &$subject, $config ) {
-        parent::__construct( $subject, $config );
+    public function __construct(&$subject, $config = array()) {
+        parent::__construct($subject, $config);
         $language = JFactory::getLanguage();
         $language->load('plg_system_stilerosptwitter', JPATH_ADMINISTRATOR, 'en-GB', true);
         $language->load('plg_system_stilerosptwitter', JPATH_ADMINISTRATOR, null, true);
@@ -36,6 +36,10 @@ class plgSystemStilerosptwitter extends JPlugin {
             SocialpromoterPosttype::IMAGE
         );
     }
+    public function postImage($url){
+        return $url;
+    }
+    
     /**
      * Checks if the main component is installed
      * @return boolean
