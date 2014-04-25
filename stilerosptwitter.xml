@@ -9,57 +9,28 @@
 	<version>1.0</version>
 	<license>GPLv2</license>
 	<description>Description</description>
-        <!--
-	<install>
-            <sql>
-                <file driver="mysql" charset="utf8">stilerosptwittersql/stilerosptwitter_install.sql</file>
-            </sql>
-	</install>
-	<uninstall>
-            <sql>
-                <file driver="mysql" charset="utf8">stilerosptwittersql/stilerosptwitter_uninstall.sql</file>
-            </sql>
-	</uninstall>
-        -->
-        <!-- Site Main File Copy Section -->
-	<!-- Note the folder attribute: This attribute describes the folder
-		to copy FROM in the package to install therefore files copied
-		in this section are copied from /site/ in the package -->
 	<files>
 		<filename plugin="stilerosptwitter">stilerosptwitter.php</filename>
+                <folder>library</folder>
+
 	</files>
-        <!--
-        <media destination="stilerosptwitter">
-            <folder>assets/js</folder>
-            <folder>assets/images</folder>
-            <folder>assets/css</folder>
-        </media>
-	<languages folder="language">
-            <language tag="en-GB">site/language/en-GB.com_stilerosptwitter.ini</language>
-            <language tag="sv-SE">site/language/sv-SE.com_stilerosptwitter.ini</language>
-            <language tag="en-GB">site/language/en-GB.com_stilerosptwitter.sys.ini</language>
-            <language tag="sv-SE">site/language/sv-SE.com_stilerosptwitter.sys.ini</language>
-        </languages>
-        -->
         <config>
-            <fields name="params" addfieldpath="/plugins/system/stilerosptwitter/elements">
-                    <fieldset name="settings" label="PLG_CONTENT_STILEROSPTWITTER_SETTINGS">
-                            <field name="custom_field" type="customfieldname" default="" label="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME" description="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME_DESC"/>
-                            <field name="param_name" type="text"  default="" label="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME" description="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME_DESC"/>
-                            <field name="param_name2" type="radio" default="1" label="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME2" description="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME2_DESC">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                            </field>
-                            <field type="spacer" default="PLG_CONTENT_STILEROSPTWITTER_SPACER"/>
-                    </fieldset>
-                    <fieldset name="other" label="PLG_CONTENT_STILEROSPTWITTER_FIELDSET">
-                            <field name="param_name" type="text"  default="" label="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME" description="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME_DESC"/>
-                            <field name="param_name2" type="radio" default="1" label="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME2" description="PLG_CONTENT_STILEROSPTWITTER_PARAMNAME2_DESC">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                            </field>
-                            <field type="spacer" default="PLG_CONTENT_STILEROSPTWITTER_SPACER"/>
-                    </fieldset>
+            <fields name="params">
+                <fieldset name="settings" label="PLG_SYSTEM_STILEROSPTWITTER_SETTINGS">
+                    <field name="consumer_key" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_KEY" description="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_KEY_DESC"/>
+                    <field name="consumer_secret" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_SECRET" description="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_SECRET_DESC"/>
+                    <field name="token" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_TOKEN" description="PLG_SYSTEM_STILEROSPTWITTER_TOKEN_DESC"/>
+                    <field name="secret" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_SECRET" description="PLG_SYSTEM_STILEROSPTWITTER_SECRET_DESC"/>
+                    <field name="default_title" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_DEFAULT_TITLE" description="PLG_SYSTEM_STILEROSPTWITTER_DEFAULT_TITLE_DESC"/>
+                    <field name="default_desc" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_DEFAULT_DESC" description="PLG_SYSTEM_STILEROSPTWITTER_DEFAULT_DESC_DESC"/>
+                    <field name="default_tags" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_DEFAULT_TAGS" description="PLG_SYSTEM_STILEROSPTWITTER_DEFAULT_TAGS_DESC"/>
+                </fieldset>
             </fields>
         </config>
+        <administration>
+            <languages folder="language">
+                <language tag="en-GB">en-GB.plg_socialpromoter_stilerosptwitter.ini</language>
+                <language tag="en-GB">en-GB.plg_socialpromoter_stilerosptwitter.ini</language>
+            </languages>
+        </administration>
 </extension>
