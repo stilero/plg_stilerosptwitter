@@ -10,13 +10,16 @@
 	<license>GPLv2</license>
 	<description>Description</description>
 	<files>
-		<filename plugin="stilerosptwitter">stilerosptwitter.php</filename>
-                <folder>library</folder>
-
+            <filename plugin="stilerosptwitter">stilerosptwitter.php</filename>
+            <folder>library</folder>
 	</files>
+        <languages folder="language">
+            <language tag="en-GB">en-GB.plg_socialpromoter_stilerosptwitter.ini</language>
+            <language tag="en-GB">en-GB.plg_socialpromoter_stilerosptwitter.ini</language>
+        </languages>
         <config>
             <fields name="params">
-                <fieldset name="settings" label="PLG_SYSTEM_STILEROSPTWITTER_SETTINGS">
+                <fieldset name="settings" label="PLG_SOCIALPROMOTER_STILEROSPTWITTER_SETTINGS">
                     <field name="consumer_key" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_KEY" description="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_KEY_DESC"/>
                     <field name="consumer_secret" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_SECRET" description="PLG_SYSTEM_STILEROSPTWITTER_CONSUMER_SECRET_DESC"/>
                     <field name="token" type="text"  default="" label="PLG_SYSTEM_STILEROSPTWITTER_TOKEN" description="PLG_SYSTEM_STILEROSPTWITTER_TOKEN_DESC"/>
@@ -27,10 +30,4 @@
                 </fieldset>
             </fields>
         </config>
-        <administration>
-            <languages folder="language">
-                <language tag="en-GB">en-GB.plg_socialpromoter_stilerosptwitter.ini</language>
-                <language tag="en-GB">en-GB.plg_socialpromoter_stilerosptwitter.ini</language>
-            </languages>
-        </administration>
 </extension>
