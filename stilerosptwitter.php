@@ -106,7 +106,8 @@ class plgSocialpromoterStilerosptwitter extends JPlugin {
      * @return string space separated string of tags
      */
     public function firstThreeTags($tagstring){
-        $tags = explode(' ', $tagstring);
+        $noCommas = str_replace(',', '', $tagstring);
+        $tags = explode(' ', $noCommas);
         $newtags = array();
         for ($i=0; $i<count($tags); $i++){
             if($i < 3){
