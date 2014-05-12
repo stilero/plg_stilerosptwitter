@@ -15,7 +15,8 @@ if(!defined('DS')){
     define('DS',DIRECTORY_SEPARATOR);
 }
 define('PATH_TWITTER', dirname(__FILE__).DS.'library'.DS);
-JLoader::register('tmhOauth', PATH_TWITTER.'tmhOauth.php');
+//print PATH_TWITTER.'tmhOAuth.php';
+JLoader::register('tmhOAuth', PATH_TWITTER.'tmhOAuth.php');
 JLoader::register('SocialpromoterImporter', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_socialpromoter'.DS.'helpers'.DS.'importer.php');
 JLoader::register('SocialpromoterPosttype', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_socialpromoter'.DS.'library'.DS.'posttype.php');
 //jimport('joomla.plugin.plugin');
@@ -99,6 +100,37 @@ class plgSocialpromoterStilerosptwitter extends JPlugin {
         }
     }
     
+    /**
+     * Returns the first three tags found
+     * @param string $tagstring
+     * @return string space separated string of tags
+     */
+    public function firstThreeTags($tagstring){
+        $tags = explode(' ', $tagstring);
+        $newtags = array();
+        for ($i=0; $i<count($tags); $i++){
+            if($i < 3){
+                $newtags[] = $tags[$i];
+            }
+        }
+        $newstring = implode(' ', $newtags);
+        return $newstring;
+    }
+    /**
+     * Shortens the status to 140 chars
+     * @param string $title
+     * @param string $desc
+     * @param string $tags
+     * @return string Shortened status
+     */
+    public function shortenedStatus($title,$desc,$tags){
+        $tagString = ' '.$this->firstThreeTags($tags);
+        $tagCount = strlen($tagString);
+        $longStatus = $title.' - '.$desc;
+        $charsLeftForStatus = 140 - $tagCount;
+        $shortenedStatus = substr($longStatus, 0, $charsLeftForStatus).$tagString;
+        return $shortenedStatus;
+    }
      /**
      * Posts an image to Twitter
      * @param string $url Full local url to the photo to upload
@@ -110,7 +142,8 @@ class plgSocialpromoterStilerosptwitter extends JPlugin {
         $file = realpath(str_replace(JUri::root(), JPATH_ROOT.DS, $url));
         $filename = basename($file);
         $imagetype = image_type_to_mime_type(exif_imagetype($file));
-        $status = $this->title($title).' - '.$this->description($description).' '.$this->tags($tags);
+        //$status = $this->title($title).' - '.$this->description($description).' '.$this->tags($tags);
+        $status = $this->shortenedStatus($this->title($title), $this->description($description), $this->tags($tags));
         $params = array(
             'media[]' => "@".$file.";type=".$imagetype.";filename=".$filename,
             'status'  => $status
@@ -125,8 +158,11 @@ class plgSocialpromoterStilerosptwitter extends JPlugin {
             )
         );
         if ($code == 200) {
-            return json_decode($tmhOAuth->response['response'], true);
+            $response = json_decode($tmhOAuth->response['response'], true);
+            var_dump($response);
+            return $response;
         }else{
+            var_dump($code);
             return false;
         }
     }
