@@ -2,7 +2,7 @@
 /**
  * Stilero Social Promoter Facebook Plugin
  *
- * @version  1.0
+ * @version  1.1
  * @author Daniel Eliasson <daniel at stilero.com>
  * @copyright  (C) 2013-dec-26 Stilero Webdesign (http://www.stilero.com)
  * @category Plugins
@@ -126,9 +126,10 @@ class plgSocialpromoterStilerosptwitter extends JPlugin {
      */
     public function shortenedStatus($title,$desc,$tags){
         $tagString = ' '.$this->firstThreeTags($tags);
-        $tagCount = strlen($tagString);
-        $longStatus = $title.' - '.$desc;
-        $charsLeftForStatus = 140 - $tagCount;
+        $tagLength = strlen($tagString);
+        $longStatus = $title.'.'.$desc;
+        $urlLength = 25;
+        $charsLeftForStatus = 140 - $urlLength - $tagLength;
         $shortenedStatus = substr($longStatus, 0, $charsLeftForStatus).$tagString;
         return $shortenedStatus;
     }
@@ -163,7 +164,11 @@ class plgSocialpromoterStilerosptwitter extends JPlugin {
             var_dump($response);
             return $response;
         }else{
+            $response = json_decode($tmhOAuth->response['response'], true);
+            var_dump($response);
             var_dump($code);
+            var_dump($status);
+            print_r(strlen($status));
             return false;
         }
     }
